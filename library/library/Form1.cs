@@ -67,7 +67,7 @@ namespace library
             finally { DGV.RefreshDGV(dataGridViewBooks, "Book"); }
         }
 
-        private void dataGridViewBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
             // Remove book from DB by id_book
         {
             try

@@ -70,6 +70,7 @@ namespace library
         
 
         public static void DeleteBook(int id_book)
+            // Delete book by id_book from DB
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
 

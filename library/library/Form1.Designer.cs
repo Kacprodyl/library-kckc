@@ -178,7 +178,7 @@
             this.dataGridViewBooks.Name = "dataGridViewBooks";
             this.dataGridViewBooks.Size = new System.Drawing.Size(759, 207);
             this.dataGridViewBooks.TabIndex = 1;
-            this.dataGridViewBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBooks_CellContentClick);
+            this.dataGridViewBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewBooks_CellContentClick);
             // 
             // bookBindingSource
             // 
