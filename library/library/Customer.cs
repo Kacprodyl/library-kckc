@@ -28,11 +28,9 @@ namespace library
 
         public void AddCustomer()
         {
-            var connection = new SqlConnection(DbCon.ConnectionString);
             try
             {
-                connection.Open();
-                var adapter = new SqlDataAdapter("SELECT * FROM Customer", connection);
+                var adapter = new SqlDataAdapter("SELECT * FROM Customer", DbCon.ConnectionString);
                 var builder = new SqlCommandBuilder(adapter);
                 var table = new DataTable();
                 adapter.Fill(table);
@@ -47,24 +45,23 @@ namespace library
                 adapter.Update(table);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            finally { connection.Close(); }
         }
 
-        //public int GetCustomerId()
-        //{
-        //    //var adapter = new 
-        //    //string query = "SELECT id_customer FROM customer";
-        //    //using (SqlDataAdapter adapter = new SqlDataAdapter(query, connectionString))
-        //    //{
-        //    //    DataSet dataSet = new DataSet();
-        //    //    adapter.Fill(dataSet);
-        //    //    if (dataSet.Tables[0].Rows.Count > 0)
-        //    //    {
-        //    //        int idCustomer = (int)dataSet.Tables[0].Rows[0]["id_customer"];
-        //    //        return idCustomer;
-        //    //    }
-        //    //}
-        //    //return -1; // Return an invalid value if no customer id was found
-        //}
+        public int GetCustomerId(string firstname)
+        {
+            try
+            {
+                var adapter = new SqlDataAdapter($"SELECT id_customer FROM Customer where name = {firstname}", DbCon.ConnectionString);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                int customerId = (int)dataSet.Tables[0].Rows[0]["id_customer"];
+                return customerId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1; // Return an invalid value if no copy id was found or an error occurred
+            }
+        }
     }
 }
