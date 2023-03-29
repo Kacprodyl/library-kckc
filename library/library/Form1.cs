@@ -21,14 +21,23 @@ namespace library
             DGV.RefreshDGV(dataGridViewBooks, "Book");
 
             // Add button Delete to DGV
-            var col = new DataGridViewButtonColumn
+            var colDel = new DataGridViewButtonColumn
             {
                 UseColumnTextForButtonValue = true,
                 Text = "Delete",
                 Name = "Delete",
                 FillWeight = 40
             };
-            dataGridViewBooks.Columns.Add(col);
+            dataGridViewBooks.Columns.Add(colDel);
+
+            var colCopy = new DataGridViewButtonColumn
+            {
+                UseColumnTextForButtonValue = true,
+                Text = "AddCopy",
+                Name = "AddCopy",
+                FillWeight = 40
+            };
+            dataGridViewBooks.Columns.Add(colCopy);
 
             // Create a new data adapter and dataset
             var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);
@@ -69,6 +78,7 @@ namespace library
 
         private void DataGridViewBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
             // Remove book from DB by id_book
+            // add copy do database
         {
             try
             {
@@ -79,10 +89,18 @@ namespace library
                     int id_book = (int)selectedRow.Cells[0].Value;
                     Book.DeleteBook(id_book);
                 }
+                else if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "AddCopy")
+                {
+                    int index = e.RowIndex;
+                    DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
+                    int id_book = (int)selectedRow.Cells[0].Value;
+
+                    var addCopyWindow = new AddCopy(id_book);
+                    addCopyWindow.ShowDialog();
+                }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { DGV.RefreshDGV(dataGridViewBooks, "Book"); }
-
         }
     }
 }

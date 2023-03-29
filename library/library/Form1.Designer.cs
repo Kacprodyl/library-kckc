@@ -41,6 +41,10 @@
             this.textBox_publisher = new System.Windows.Forms.TextBox();
             this.textBox_title = new System.Windows.Forms.TextBox();
             this.dataGridViewBooks = new System.Windows.Forms.DataGridView();
+            this.idbookDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idgenreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publisherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonAddBook = new System.Windows.Forms.Button();
             this.genreBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -49,10 +53,6 @@
             this.authorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.authorTableAdapter = new library._library_kckcDataSetTableAdapters.AuthorTableAdapter();
             this.genreTableAdapter = new library._library_kckcDataSet_genreTableAdapters.GenreTableAdapter();
-            this.idbookDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idgenreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publisherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -180,6 +180,35 @@
             this.dataGridViewBooks.TabIndex = 1;
             this.dataGridViewBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewBooks_CellContentClick);
             // 
+            // idbookDataGridViewTextBoxColumn
+            // 
+            this.idbookDataGridViewTextBoxColumn.DataPropertyName = "id_book";
+            this.idbookDataGridViewTextBoxColumn.FillWeight = 30F;
+            this.idbookDataGridViewTextBoxColumn.HeaderText = "id_book";
+            this.idbookDataGridViewTextBoxColumn.Name = "idbookDataGridViewTextBoxColumn";
+            this.idbookDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 113.0288F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // idgenreDataGridViewTextBoxColumn
+            // 
+            this.idgenreDataGridViewTextBoxColumn.DataPropertyName = "id_genre";
+            this.idgenreDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.idgenreDataGridViewTextBoxColumn.HeaderText = "id_genre";
+            this.idgenreDataGridViewTextBoxColumn.Name = "idgenreDataGridViewTextBoxColumn";
+            // 
+            // publisherDataGridViewTextBoxColumn
+            // 
+            this.publisherDataGridViewTextBoxColumn.DataPropertyName = "publisher";
+            this.publisherDataGridViewTextBoxColumn.FillWeight = 113.0288F;
+            this.publisherDataGridViewTextBoxColumn.HeaderText = "publisher";
+            this.publisherDataGridViewTextBoxColumn.Name = "publisherDataGridViewTextBoxColumn";
+            // 
             // bookBindingSource
             // 
             this.bookBindingSource.DataMember = "Book";
@@ -221,35 +250,6 @@
             // genreTableAdapter
             // 
             this.genreTableAdapter.ClearBeforeFill = true;
-            // 
-            // idbookDataGridViewTextBoxColumn
-            // 
-            this.idbookDataGridViewTextBoxColumn.DataPropertyName = "id_book";
-            this.idbookDataGridViewTextBoxColumn.FillWeight = 30F;
-            this.idbookDataGridViewTextBoxColumn.HeaderText = "id_book";
-            this.idbookDataGridViewTextBoxColumn.Name = "idbookDataGridViewTextBoxColumn";
-            this.idbookDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.FillWeight = 113.0288F;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // idgenreDataGridViewTextBoxColumn
-            // 
-            this.idgenreDataGridViewTextBoxColumn.DataPropertyName = "id_genre";
-            this.idgenreDataGridViewTextBoxColumn.FillWeight = 70F;
-            this.idgenreDataGridViewTextBoxColumn.HeaderText = "id_genre";
-            this.idgenreDataGridViewTextBoxColumn.Name = "idgenreDataGridViewTextBoxColumn";
-            // 
-            // publisherDataGridViewTextBoxColumn
-            // 
-            this.publisherDataGridViewTextBoxColumn.DataPropertyName = "publisher";
-            this.publisherDataGridViewTextBoxColumn.FillWeight = 113.0288F;
-            this.publisherDataGridViewTextBoxColumn.HeaderText = "publisher";
-            this.publisherDataGridViewTextBoxColumn.Name = "publisherDataGridViewTextBoxColumn";
             // 
             // Form1
             // 
