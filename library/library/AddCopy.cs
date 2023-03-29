@@ -20,14 +20,13 @@ namespace library
             InitializeComponent();
         }
 
-        private void button_add_copy_Click(object sender, EventArgs e)
+        private void Button_add_copy_Click(object sender, EventArgs e)
         {
 
             try
             {
                 var copy = new Copy(Convert.ToInt32(numericUpDown_quantity.Value), dateTimePicker_realese_date.Value, IdBook);
-                MessageBox.Show(IdBook.ToString());
-                //copy.AddCopy();
+                copy.AddCopy();
                 MessageBox.Show($"Copy with quantity: {copy.Quantity} added");
                 this.Close();
             }

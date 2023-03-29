@@ -38,6 +38,7 @@ namespace library
                 newRow["quantity"] = Quantity;
                 newRow["release_date"] = ReleaseDate;
                 newRow["id_book"] = IdBook;
+                table.Rows.Add(newRow);
 
                 adapter.Update(table);
             }

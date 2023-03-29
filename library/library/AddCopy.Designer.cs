@@ -81,7 +81,7 @@
             this.button_add_copy.TabIndex = 17;
             this.button_add_copy.Text = "Add Copy";
             this.button_add_copy.UseVisualStyleBackColor = true;
-            this.button_add_copy.Click += new System.EventHandler(this.button_add_copy_Click);
+            this.button_add_copy.Click += new System.EventHandler(this.Button_add_copy_Click);
             // 
             // AddCopy
             // 
