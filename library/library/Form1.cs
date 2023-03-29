@@ -9,21 +9,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace library
 {
     public partial class Form1 : Form
     {
-        private string connectionString = "Data Source=library-kckc.mssql.somee.com;Initial Catalog=library-kckc;User ID=kacprodyl_SQLLogin_1;Password=ybqwxa2m4h;";
-        private SqlDataAdapter dataAdapter;
-        private DataSet dataSet;
-
         public Form1()
         {
             InitializeComponent();
+            DGV.RefreshDGV(dataGridViewBooks, "Book");
+
+            // Add button Delete to DGV
+            var col = new DataGridViewButtonColumn
+            {
+                UseColumnTextForButtonValue = true,
+                Text = "Delete",
+                Name = "Delete",
+                FillWeight = 40
+            };
+            dataGridViewBooks.Columns.Add(col);
+
             // Create a new data adapter and dataset
-            dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", connectionString);
-            dataSet = new DataSet();
+            var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);
+            var dataSet = new DataSet();
 
             // Fill the dataset with data from the database
             dataAdapter.Fill(dataSet, "Genre");
@@ -32,11 +41,7 @@ namespace library
             comboBox_genre.DataSource = dataSet.Tables["Genre"];
             comboBox_genre.DisplayMember = "name";
             comboBox_genre.ValueMember = "id_genre";
-        }
-
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-
+            comboBox_genre.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,11 +54,35 @@ namespace library
             this.bookTableAdapter.Fill(this._library_kckcDataSet.Book);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ButtonAddBook_Click(object sender, EventArgs e)
+            // Add new book to DB
         {
-            Book.AddBook(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text);
- 
+            try
+            {
+                var book = new Book(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text);
+                book.AddBook();
+                MessageBox.Show($"Book: {book.Name} added");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { DGV.RefreshDGV(dataGridViewBooks, "Book"); }
         }
 
+        private void DataGridViewBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            // Remove book from DB by id_book
+        {
+            try
+            {
+                if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    int index = e.RowIndex;
+                    DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
+                    int id_book = (int)selectedRow.Cells[0].Value;
+                    Book.DeleteBook(id_book);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { DGV.RefreshDGV(dataGridViewBooks, "Book"); }
+
+        }
     }
 }

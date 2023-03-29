@@ -34,41 +34,40 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboBox_genre = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_publisher = new System.Windows.Forms.TextBox();
             this.textBox_title = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewBooks = new System.Windows.Forms.DataGridView();
+            this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonAddBook = new System.Windows.Forms.Button();
+            this.genreBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._library_kckcDataSet_genre = new library._library_kckcDataSet_genre();
+            this.bookTableAdapter = new library._library_kckcDataSetTableAdapters.BookTableAdapter();
+            this.authorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.authorTableAdapter = new library._library_kckcDataSetTableAdapters.AuthorTableAdapter();
+            this.genreTableAdapter = new library._library_kckcDataSet_genreTableAdapters.GenreTableAdapter();
             this.idbookDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idgenreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.publisherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.bookTableAdapter = new library._library_kckcDataSetTableAdapters.BookTableAdapter();
-            this.authorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.authorTableAdapter = new library._library_kckcDataSetTableAdapters.AuthorTableAdapter();
-            this._library_kckcDataSet_genre = new library._library_kckcDataSet_genre();
-            this.genreBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.genreTableAdapter = new library._library_kckcDataSet_genreTableAdapters.GenreTableAdapter();
-            this.comboBox_genre = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_genre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.genreBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_genre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bindingSource1
             // 
             this.bindingSource1.DataSource = this._library_kckcDataSet;
             this.bindingSource1.Position = 0;
-            this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
             // _library_kckcDataSet
             // 
@@ -103,8 +102,8 @@
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.textBox_publisher);
             this.tabPage2.Controls.Add(this.textBox_title);
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.dataGridViewBooks);
+            this.tabPage2.Controls.Add(this.buttonAddBook);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -112,6 +111,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Books";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_genre
+            // 
+            this.comboBox_genre.FormattingEnabled = true;
+            this.comboBox_genre.Location = new System.Drawing.Point(353, 261);
+            this.comboBox_genre.Name = "comboBox_genre";
+            this.comboBox_genre.Size = new System.Drawing.Size(180, 21);
+            this.comboBox_genre.TabIndex = 8;
             // 
             // label3
             // 
@@ -154,60 +161,49 @@
             this.textBox_title.Size = new System.Drawing.Size(180, 20);
             this.textBox_title.TabIndex = 2;
             // 
-            // dataGridView1
+            // dataGridViewBooks
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewBooks.AllowUserToAddRows = false;
+            this.dataGridViewBooks.AllowUserToDeleteRows = false;
+            this.dataGridViewBooks.AutoGenerateColumns = false;
+            this.dataGridViewBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idbookDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.idgenreDataGridViewTextBoxColumn,
             this.publisherDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.bookBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(759, 207);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // idbookDataGridViewTextBoxColumn
-            // 
-            this.idbookDataGridViewTextBoxColumn.DataPropertyName = "id_book";
-            this.idbookDataGridViewTextBoxColumn.HeaderText = "id_book";
-            this.idbookDataGridViewTextBoxColumn.Name = "idbookDataGridViewTextBoxColumn";
-            this.idbookDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // idgenreDataGridViewTextBoxColumn
-            // 
-            this.idgenreDataGridViewTextBoxColumn.DataPropertyName = "id_genre";
-            this.idgenreDataGridViewTextBoxColumn.HeaderText = "id_genre";
-            this.idgenreDataGridViewTextBoxColumn.Name = "idgenreDataGridViewTextBoxColumn";
-            // 
-            // publisherDataGridViewTextBoxColumn
-            // 
-            this.publisherDataGridViewTextBoxColumn.DataPropertyName = "publisher";
-            this.publisherDataGridViewTextBoxColumn.HeaderText = "publisher";
-            this.publisherDataGridViewTextBoxColumn.Name = "publisherDataGridViewTextBoxColumn";
+            this.dataGridViewBooks.DataSource = this.bookBindingSource;
+            this.dataGridViewBooks.Location = new System.Drawing.Point(6, 3);
+            this.dataGridViewBooks.Name = "dataGridViewBooks";
+            this.dataGridViewBooks.Size = new System.Drawing.Size(759, 207);
+            this.dataGridViewBooks.TabIndex = 1;
+            this.dataGridViewBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewBooks_CellContentClick);
             // 
             // bookBindingSource
             // 
             this.bookBindingSource.DataMember = "Book";
             this.bookBindingSource.DataSource = this.bindingSource1;
             // 
-            // button1
+            // buttonAddBook
             // 
-            this.button1.Location = new System.Drawing.Point(389, 343);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Add Book";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAddBook.Location = new System.Drawing.Point(389, 343);
+            this.buttonAddBook.Name = "buttonAddBook";
+            this.buttonAddBook.Size = new System.Drawing.Size(94, 40);
+            this.buttonAddBook.TabIndex = 0;
+            this.buttonAddBook.Text = "Add Book";
+            this.buttonAddBook.UseVisualStyleBackColor = true;
+            this.buttonAddBook.Click += new System.EventHandler(this.ButtonAddBook_Click);
+            // 
+            // genreBindingSource
+            // 
+            this.genreBindingSource.DataMember = "Genre";
+            this.genreBindingSource.DataSource = this._library_kckcDataSet_genre;
+            // 
+            // _library_kckcDataSet_genre
+            // 
+            this._library_kckcDataSet_genre.DataSetName = "_library_kckcDataSet_genre";
+            this._library_kckcDataSet_genre.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bookTableAdapter
             // 
@@ -222,31 +218,38 @@
             // 
             this.authorTableAdapter.ClearBeforeFill = true;
             // 
-            // _library_kckcDataSet_genre
-            // 
-            this._library_kckcDataSet_genre.DataSetName = "_library_kckcDataSet_genre";
-            this._library_kckcDataSet_genre.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // genreBindingSource
-            // 
-            this.genreBindingSource.DataMember = "Genre";
-            this.genreBindingSource.DataSource = this._library_kckcDataSet_genre;
-            // 
             // genreTableAdapter
             // 
             this.genreTableAdapter.ClearBeforeFill = true;
             // 
-            // comboBox_genre
+            // idbookDataGridViewTextBoxColumn
             // 
-            this.comboBox_genre.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.genreBindingSource, "id_genre", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
-            this.comboBox_genre.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.genreBindingSource, "id_genre", true));
-            this.comboBox_genre.DataSource = this.genreBindingSource;
-            this.comboBox_genre.DisplayMember = "name";
-            this.comboBox_genre.FormattingEnabled = true;
-            this.comboBox_genre.Location = new System.Drawing.Point(353, 261);
-            this.comboBox_genre.Name = "comboBox_genre";
-            this.comboBox_genre.Size = new System.Drawing.Size(180, 21);
-            this.comboBox_genre.TabIndex = 8;
+            this.idbookDataGridViewTextBoxColumn.DataPropertyName = "id_book";
+            this.idbookDataGridViewTextBoxColumn.FillWeight = 30F;
+            this.idbookDataGridViewTextBoxColumn.HeaderText = "id_book";
+            this.idbookDataGridViewTextBoxColumn.Name = "idbookDataGridViewTextBoxColumn";
+            this.idbookDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 113.0288F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // idgenreDataGridViewTextBoxColumn
+            // 
+            this.idgenreDataGridViewTextBoxColumn.DataPropertyName = "id_genre";
+            this.idgenreDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.idgenreDataGridViewTextBoxColumn.HeaderText = "id_genre";
+            this.idgenreDataGridViewTextBoxColumn.Name = "idgenreDataGridViewTextBoxColumn";
+            // 
+            // publisherDataGridViewTextBoxColumn
+            // 
+            this.publisherDataGridViewTextBoxColumn.DataPropertyName = "publisher";
+            this.publisherDataGridViewTextBoxColumn.FillWeight = 113.0288F;
+            this.publisherDataGridViewTextBoxColumn.HeaderText = "publisher";
+            this.publisherDataGridViewTextBoxColumn.Name = "publisherDataGridViewTextBoxColumn";
             // 
             // Form1
             // 
@@ -262,11 +265,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_genre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.genreBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_genre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,14 +281,10 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridViewBooks;
+        private System.Windows.Forms.Button buttonAddBook;
         private System.Windows.Forms.BindingSource bookBindingSource;
         private _library_kckcDataSetTableAdapters.BookTableAdapter bookTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idbookDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idgenreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn publisherDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -297,6 +296,10 @@
         private System.Windows.Forms.BindingSource genreBindingSource;
         private _library_kckcDataSet_genreTableAdapters.GenreTableAdapter genreTableAdapter;
         private System.Windows.Forms.ComboBox comboBox_genre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idbookDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idgenreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publisherDataGridViewTextBoxColumn;
     }
 }
 
