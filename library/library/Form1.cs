@@ -39,6 +39,15 @@ namespace library
             };
             dataGridViewBooks.Columns.Add(colCopy);
 
+            var colRent = new DataGridViewButtonColumn
+            {
+                UseColumnTextForButtonValue = true,
+                Text = "Rent",
+                Name = "Rent",
+                FillWeight = 40
+            };
+            dataGridViewBooks.Columns.Add(colRent);
+
             // Create a new data adapter and dataset
             var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);
             var dataSet = new DataSet();
@@ -97,6 +106,15 @@ namespace library
 
                     var addCopyWindow = new AddCopy(id_book);
                     addCopyWindow.ShowDialog();
+                }
+                else if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "Rent")
+                {
+                    int index = e.RowIndex;
+                    DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
+                    int id_book = (int)selectedRow.Cells[0].Value;
+
+                    var rentWindow = new RentForm(id_book);
+                    rentWindow.ShowDialog();
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }

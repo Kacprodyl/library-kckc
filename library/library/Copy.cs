@@ -22,14 +22,16 @@ namespace library
             IdBook = idBook;
         }
 
-        public void AddCopy()
-            // Add copy via adapter
+        public Copy(int idBook)
         {
-            var connection = new SqlConnection(DbCon.ConnectionString);
+            IdBook = idBook;
+        }
+
+        public void AddCopy()
+        {
             try
             {
-                connection.Open();
-                var adapter = new SqlDataAdapter("SELECT * FROM Copy", connection);
+                var adapter = new SqlDataAdapter("SELECT * FROM Copy", DbCon.ConnectionString);
                 var builder = new SqlCommandBuilder(adapter);
                 var table = new DataTable();
                 adapter.Fill(table);
@@ -43,7 +45,26 @@ namespace library
                 adapter.Update(table);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            finally { connection.Close(); }
+        }
+
+        public int GetCopyId(int IdBook)
+        {
+            try
+            {
+                var adapter = new SqlDataAdapter($"SELECT id_copy FROM Copy WHERE id_book = {IdBook};", DbCon.ConnectionString);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                int copyId = (int)dataSet.Tables[0].Rows[0]["id_copy"];
+                return copyId;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1; // Return an invalid value if no copy id was found or an error occurred
+
+            }
         }
     }
 }
+
