@@ -46,7 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCopy.Designer.cs">
+      <DependentUpon>AddCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book.cs" />
+    <Compile Include="Copy.cs" />
     <Compile Include="DbCon.cs" />
     <Compile Include="DGV.cs" />
     <Compile Include="Form1.cs">
@@ -67,6 +74,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_library_kckcDataSet_genre.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCopy.resx">
+      <DependentUpon>AddCopy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
