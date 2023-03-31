@@ -18,17 +18,10 @@ namespace library
         public Form1()
         {
             InitializeComponent();
-            DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
 
             // Add button Quantity to DGV
-            var colCopy = new DataGridViewButtonColumn
-            {
-                UseColumnTextForButtonValue = true,
-                Text = "Quantity",
-                Name = "Quantity",
-                FillWeight = 40
-            };
-            dataGridViewBooks.Columns.Add(colCopy);
+            DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
+
 
             // Create a new data adapter and dataset
             var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);
@@ -59,7 +52,7 @@ namespace library
         {
             try
             {
-                var book = new Book(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text, textBoxAuthor.Text, (int)numeric_quantity.Value);
+                var book = new Book(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text, textBoxAuthor.Text, (int)numeric_quantity.Value, dateTPRealese.Value);
                 book.AddBook();
                 MessageBox.Show($"Book: {book.Name} added");
             }
@@ -68,7 +61,7 @@ namespace library
         }
 
         private void DataGridViewBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            // Change book quantity by book name
+            // Change book quantity by book_id
         {
             try
             {
@@ -77,7 +70,6 @@ namespace library
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
                     int id_book = (int)selectedRow.Cells[0].Value;
-
                     var addCopyWindow = new AddCopy(id_book);
                     addCopyWindow.ShowDialog();
                 }
@@ -85,5 +77,6 @@ namespace library
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;"); }
         }
+
     }
 }

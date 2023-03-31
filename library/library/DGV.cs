@@ -20,6 +20,17 @@ namespace library
             var dataSet = new DataSet();
             dataAdapter.Fill(dataSet, "Library");
             dgv.DataSource = dataSet.Tables["Library"];
+            if (dgv.Columns.Count == 6)
+            {
+                var colCopy = new DataGridViewButtonColumn
+                {
+                    UseColumnTextForButtonValue = true,
+                    Text = "Quantity",
+                    Name = "Quantity",
+                    FillWeight = 40
+                };
+                dgv.Columns.Add(colCopy);
+            }
         }
     }
 }

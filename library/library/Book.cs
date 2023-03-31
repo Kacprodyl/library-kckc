@@ -17,15 +17,17 @@ namespace library
         public string Publisher { get; set; }
         public string Author { get; set; }
         public int Quantity { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
 
-        public Book(string name, int genreId, string publisher, string author, int quantity)
+        public Book(string name, int genreId, string publisher, string author, int quantity, DateTime releaseDate)
         {
             Name = name;
             GenreId = genreId;
             Publisher = publisher;
             Author = author;
             Quantity = quantity;
+            ReleaseDate = releaseDate;
         }
         public void AddBook()
         {
@@ -42,6 +44,7 @@ namespace library
                 adapter.SelectCommand.Parameters.AddWithValue("@genreId", GenreId);
                 adapter.SelectCommand.Parameters.AddWithValue("@publisherName", Publisher);
                 adapter.SelectCommand.Parameters.AddWithValue("@quantity", Quantity);
+                adapter.SelectCommand.Parameters.AddWithValue("@releaseDate", ReleaseDate);
 
                 var table = new DataTable();
 
