@@ -23,10 +23,13 @@ namespace library
         private void button1_Click(object sender, EventArgs e)
         {
             var copy = new Copy(IdBook);
-            var rent = new Rent(copy.GetCopyId(IdBook));
             var customer = new Customer(textBox_first_name.Text, textBox_surrname.Text, textBox_phone_number.Text, textBox_email.Text);
-            customer.AddCustomer();
-            rent.AddRent(customer.GetCustomerId(textBox_first_name.Text));
+            var rent = new Rent(copy.GetCopyId(), customer.GetCustomerId());
+            MessageBox.Show(customer.FirstName, customer.Surrname);
+            MessageBox.Show(copy.GetCopyId().ToString());
+            MessageBox.Show(customer.GetCustomerId().ToString());
+            //customer.AddCustomer();
+            //rent.AddRent();
             
         }
     }

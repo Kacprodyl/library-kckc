@@ -47,7 +47,7 @@ namespace library
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
-        public int GetCopyId(int IdBook)
+        public int GetCopyId()
         {
             try
             {

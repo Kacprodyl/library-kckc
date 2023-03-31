@@ -47,11 +47,11 @@ namespace library
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
-        public int GetCustomerId(string firstname)
+        public int GetCustomerId()
         {
             try
             {
-                var adapter = new SqlDataAdapter($"SELECT id_customer FROM Customer where name = {firstname}", DbCon.ConnectionString);
+                var adapter = new SqlDataAdapter($"SELECT id_customer FROM Customer where name = {FirstName} and surrname = {Surrname}", DbCon.ConnectionString);
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
                 int customerId = (int)dataSet.Tables[0].Rows[0]["id_customer"];

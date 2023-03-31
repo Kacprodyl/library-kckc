@@ -18,13 +18,14 @@ namespace library
         public int IdCustomer { get; set; }
         public int Fee { get; set;}
 
-        public Rent(int idCopy)
+        public Rent(int idCopy, int idCustomer)
         {
             IdCopy = idCopy;
+            IdCustomer = idCustomer;
             
         }
 
-        public void AddRent(int customerId)
+        public void AddRent()
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
@@ -35,9 +36,9 @@ namespace library
                 adapter.Fill(table);
 
                 var newRow = table.NewRow();
-                newRow["rent_date"] = RentDate;
-                newRow["completion_date"] = CompletionDate;
-                newRow["fee"] = Fee;
+                newRow["rent_date"] = DateTime.Today;
+                newRow["completion_date"] = DateTime.Today;
+                newRow["fee"] = 5;
                 newRow["id_customer"] = IdCustomer;
                 newRow["id_copy"] = IdCopy;
                 table.Rows.Add(newRow);
