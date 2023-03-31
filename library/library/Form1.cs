@@ -18,23 +18,14 @@ namespace library
         public Form1()
         {
             InitializeComponent();
-            DGV.RefreshDGV(dataGridViewBooks, "Book");
+            DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
 
-            // Add button Delete to DGV
-            var colDel = new DataGridViewButtonColumn
-            {
-                UseColumnTextForButtonValue = true,
-                Text = "Delete",
-                Name = "Delete",
-                FillWeight = 40
-            };
-            dataGridViewBooks.Columns.Add(colDel);
-
+            // Add button Quantity to DGV
             var colCopy = new DataGridViewButtonColumn
             {
                 UseColumnTextForButtonValue = true,
-                Text = "AddCopy",
-                Name = "AddCopy",
+                Text = "Quantity",
+                Name = "Quantity",
                 FillWeight = 40
             };
             dataGridViewBooks.Columns.Add(colCopy);
@@ -68,28 +59,20 @@ namespace library
         {
             try
             {
-                var book = new Book(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text);
+                var book = new Book(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text, textBoxAuthor.Text, (int)numeric_quantity.Value);
                 book.AddBook();
                 MessageBox.Show($"Book: {book.Name} added");
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            finally { DGV.RefreshDGV(dataGridViewBooks, "Book"); }
+            finally { DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;"); }
         }
 
         private void DataGridViewBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            // Remove book from DB by id_book
-            // add copy do database
+            // Change book quantity by book name
         {
             try
             {
-                if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "Delete")
-                {
-                    int index = e.RowIndex;
-                    DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
-                    int id_book = (int)selectedRow.Cells[0].Value;
-                    Book.DeleteBook(id_book);
-                }
-                else if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "AddCopy")
+                if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "Quantity")
                 {
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
@@ -100,7 +83,7 @@ namespace library
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            finally { DGV.RefreshDGV(dataGridViewBooks, "Book"); }
+            finally { DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;"); }
         }
     }
 }
