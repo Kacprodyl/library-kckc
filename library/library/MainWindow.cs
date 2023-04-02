@@ -25,7 +25,7 @@ namespace library
                 UseColumnTextForButtonValue = true,
                 Text = "Quantity",
                 Name = "Quantity",
-                FillWeight = 40
+                FillWeight = 60
             };
             dataGridViewBooks.Columns.Add(colCopy);
             DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");

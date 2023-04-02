@@ -223,7 +223,7 @@
             // 
             this.dataGridViewBooks.AllowUserToAddRows = false;
             this.dataGridViewBooks.AllowUserToDeleteRows = false;
-            this.dataGridViewBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBooks.Location = new System.Drawing.Point(6, 3);
             this.dataGridViewBooks.Name = "dataGridViewBooks";
