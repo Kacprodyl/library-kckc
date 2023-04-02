@@ -55,9 +55,11 @@
             this.authorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.authorTableAdapter = new library._library_kckcDataSetTableAdapters.AuthorTableAdapter();
             this.genreTableAdapter = new library._library_kckcDataSet_genreTableAdapters.GenreTableAdapter();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_quantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).BeginInit();
@@ -89,12 +91,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(768, 431);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Welcome!";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -275,6 +278,16 @@
             // 
             this.genreTableAdapter.ClearBeforeFill = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(85, 164);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(601, 73);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Welcome to Library!";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +300,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_quantity)).EndInit();
@@ -327,6 +342,7 @@
         private System.Windows.Forms.NumericUpDown numeric_quantity;
         private System.Windows.Forms.Label labelRelease;
         private System.Windows.Forms.DateTimePicker dateTPRealese;
+        private System.Windows.Forms.Label label4;
     }
 }
 
