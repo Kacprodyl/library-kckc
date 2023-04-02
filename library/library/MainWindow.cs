@@ -13,23 +13,27 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace library
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
 
             // Add button Quantity to DGV
+            var colCopy = new DataGridViewButtonColumn
+            {
+                UseColumnTextForButtonValue = true,
+                Text = "Quantity",
+                Name = "Quantity",
+                FillWeight = 40
+            };
+            dataGridViewBooks.Columns.Add(colCopy);
             DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
-
 
             // Create a new data adapter and dataset
             var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);
             var dataSet = new DataSet();
-
-            // Fill the dataset with data from the database
             dataAdapter.Fill(dataSet, "Genre");
-
             // Bind the combobox to the dataset
             comboBox_genre.DataSource = dataSet.Tables["Genre"];
             comboBox_genre.DisplayMember = "name";
@@ -50,9 +54,15 @@ namespace library
         private void ButtonAddBook_Click(object sender, EventArgs e)
             // Add new book to DB
         {
+            string title = textBox_title.Text;
+            int genre_id = Convert.ToInt32(comboBox_genre.SelectedValue);
+            string publisher = textBox_publisher.Text;
+            string author = textBoxAuthor.Text;
+            int quantity = (int)numeric_quantity.Value;
+            DateTime release_date = dateTPRealese.Value;
             try
             {
-                var book = new Book(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text, textBoxAuthor.Text, (int)numeric_quantity.Value, dateTPRealese.Value);
+                var book = new Book(title, genre_id, publisher, author, quantity, release_date);
                 book.AddBook();
                 MessageBox.Show($"Book: {book.Name} added");
             }
@@ -69,9 +79,11 @@ namespace library
                 {
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
-                    int id_book = (int)selectedRow.Cells[0].Value;
-                    var addCopyWindow = new AddCopy(id_book);
-                    addCopyWindow.ShowDialog();
+                    int id_book = (int)selectedRow.Cells[1].Value;
+                    string title = (string)selectedRow.Cells[2].Value;
+                    int quantity = (int)selectedRow.Cells[6].Value;
+                    var qunatity_win = new Quantity(id_book, quantity, title);
+                    qunatity_win.ShowDialog();
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
