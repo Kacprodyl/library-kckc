@@ -20,6 +20,11 @@ namespace library
             IdBook = idBook;
         }
 
+        public Copy(int idBook)
+        {
+            IdBook = idBook;
+        }
+
         public void QuantityUpdate()
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
@@ -33,6 +38,23 @@ namespace library
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { connection.Close(); }
+        }
+
+        public int GetCopyId()
+        {
+            try
+            {
+                var adapter = new SqlDataAdapter($"SELECT id_copy FROM Copy where id_book = {IdBook}", DbCon.ConnectionString);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                int copyId = (int)dataSet.Tables[0].Rows[0]["id_copy"];
+                return copyId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1; // Return an invalid value if no copy id was found or an error occurred
+            }
         }
     }
 }

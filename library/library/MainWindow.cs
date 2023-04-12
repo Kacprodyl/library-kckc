@@ -88,9 +88,9 @@ namespace library
                 {
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
-                    int id_book = (int)selectedRow.Cells[1].Value;
-                    string title = (string)selectedRow.Cells[2].Value;
-                    int quantity = (int)selectedRow.Cells[6].Value;
+                    int id_book = (int)selectedRow.Cells[2].Value;
+                    string title = (string)selectedRow.Cells[3].Value;
+                    int quantity = (int)selectedRow.Cells[7].Value;
                     var qunatity_win = new Quantity(id_book, quantity, title);
                     qunatity_win.ShowDialog();
                 }
@@ -98,7 +98,7 @@ namespace library
                 {
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
-                    int id_book = (int)selectedRow.Cells[0].Value;
+                    int id_book = (int)selectedRow.Cells[2].Value;
 
                     var rentWindow = new RentForm(id_book);
                     rentWindow.ShowDialog();
