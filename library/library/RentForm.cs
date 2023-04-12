@@ -35,6 +35,7 @@ namespace library
                 var rent = new Rent(copyId, customerId);
                 rent.AddRent();
                 rent.UpdateCopyRent();
+                copy.UpdateCopyAfterRent(copyId);
 
                 MessageBox.Show($"Rent added for user: {textBox_first_name.Text} {textBox_surrname.Text}");
             }

@@ -56,5 +56,19 @@ namespace library
                 return -1; // Return an invalid value if no copy id was found or an error occurred
             }
         }
+
+        public void UpdateCopyAfterRent(int copyId)
+        {
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+                var command = new SqlCommand("UPDATE Copy SET quantity = quantity -1 WHERE id_copy = @id_copy;", connection);
+                command.Parameters.AddWithValue("@id_copy", copyId);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { connection.Close(); }
+        }
     }
 }
