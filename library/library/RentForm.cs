@@ -31,13 +31,14 @@ namespace library
                 customer.AddCustomer();
                 int customerId = customer.GetCustomerId();
 
+
                 var rent = new Rent(copyId, customerId);
                 rent.AddRent();
+                rent.UpdateCopyRent();
 
                 MessageBox.Show($"Rent added for user: {textBox_first_name.Text} {textBox_surrname.Text}");
             }
-            catch { }
-
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
     }
 }

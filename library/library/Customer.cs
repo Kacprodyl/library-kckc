@@ -56,20 +56,18 @@ namespace library
         {
             try
             {
-                using (var connection = new SqlConnection(DbCon.ConnectionString))
-                {
-                    connection.Open();
-                    var command = new SqlCommand("SELECT id_customer FROM Customer WHERE first_name = @first_name AND surname = @surname", connection);
-                    command.Parameters.AddWithValue("@first_name", FirstName);
-                    command.Parameters.AddWithValue("@surname", Surrname);
-                    var customerId = (int)command.ExecuteScalar();
-                    return customerId;
-                }
+                var adapter = new SqlDataAdapter("SELECT id_customer FROM Customer WHERE first_name = @first_name AND surname = @surname", DbCon.ConnectionString);
+                adapter.SelectCommand.Parameters.AddWithValue("@first_name", FirstName);
+                adapter.SelectCommand.Parameters.AddWithValue("@surname", Surrname);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                var customerId = (int)dataTable.Rows[0]["id_customer"];
+                return customerId;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1; // Return an invalid value if no customer id was found or an error occurred
+                return -1; // Return an invalid value if an error occurred
             }
         }
     }

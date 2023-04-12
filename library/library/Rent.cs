@@ -47,5 +47,48 @@ namespace library
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
+
+        public void UpdateCopyRent()
+        {
+            using (var connection = new SqlConnection(DbCon.ConnectionString))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var command = new SqlCommand("INSERT INTO CopyRent (id_rent, id_copy) VALUES (@idRent, @idCopy)", connection, transaction);
+                        command.Parameters.AddWithValue("@idRent", GetLastRentId());
+                        command.Parameters.AddWithValue("@idCopy", IdCopy);
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
+
+        public int GetLastRentId()
+        {
+            try
+            {
+
+                var adapter = new SqlDataAdapter("SELECT TOP 1 id_rent FROM Rent ORDER BY id_rent DESC", DbCon.ConnectionString);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                var rentId = (int)dataTable.Rows[0]["id_rent"];
+                return rentId;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1; // Return an invalid value if no customer id was found or an error occurred
+            }
+        }
     }
 }
