@@ -38,7 +38,7 @@ namespace library
                 var newRow = table.NewRow();
                 newRow["rent_date"] = DateTime.Today;
                 newRow["completion_date"] = DateTime.Today;
-                newRow["fee"] = 5;
+                newRow["fee"] = 0;
                 newRow["id_customer"] = IdCustomer;
                 newRow["id_copy"] = IdCopy;
                 table.Rows.Add(newRow);
@@ -90,6 +90,46 @@ namespace library
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1; // Return an invalid value if no customer id was found or an error occurred
             }
+        }
+
+        public static void DeleteRent(int idRent, int idCopy)
+        {
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+
+                var adapter = new SqlDataAdapter("DELETE FROM Rent where id_rent = @id_rent AND id_copy = @id_copy", connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_rent", idRent);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_copy", idCopy);
+
+                var table = new DataTable();
+                adapter.Fill(table);
+                adapter.Update(table);
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { connection.Close(); }
+        }
+
+        public static void DeleteCopyRent(int idRent, int idCopy)
+        {
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+
+                var adapter = new SqlDataAdapter("DELETE FROM CopyRent where id_rent = @id_rent AND id_copy = @id_copy", connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_rent", idRent);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_copy", idCopy);
+
+                var table = new DataTable();
+                adapter.Fill(table);
+                adapter.Update(table);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally {connection.Close();}
+
         }
     }
 }
