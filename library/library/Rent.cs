@@ -15,9 +15,7 @@ namespace library
         public int IdRent { get; set; }
         public int IdCopy { get; set;}
         public DateTime RentDate { get; set;}
-        public DateTime CompletionDate { get; set;}
         public int IdCustomer { get; set; }
-        public int Fee { get; set;}
 
         public Rent(int idRent, int idCopy, DateTime rentDate)
         {
@@ -64,7 +62,6 @@ namespace library
 
                 var newRow = table.NewRow();
                 newRow["rent_date"] = DateTime.Today;
-                newRow["completion_date"] = DateTime.Today;
                 newRow["fee"] = 0;
                 newRow["id_customer"] = IdCustomer;
                 newRow["id_copy"] = IdCopy;
