@@ -24,4 +24,4 @@ To return a borrowed book in the "Rent" window, simply click the "Rent Back" but
 
 # Business rules
 - After 89 days without rent back, customer will be fined 100 PLN
-- After rent, an email will be sent to the customer's email address with rent information
+- An information will be sent to the customer's email address with rent description
