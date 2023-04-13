@@ -40,15 +40,15 @@
             this.textBox_email = new System.Windows.Forms.TextBox();
             this.button_rent = new System.Windows.Forms.Button();
             this.dataGridView_rent = new System.Windows.Forms.DataGridView();
-            this.rentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._library_kckcDataSet_rent = new library._library_kckcDataSet_rent();
-            this.rentTableAdapter = new library._library_kckcDataSet_rentTableAdapters.RentTableAdapter();
             this.idrentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rentdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.completiondateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.feeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idcustomerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idcopyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._library_kckcDataSet_rent = new library._library_kckcDataSet_rent();
+            this.rentTableAdapter = new library._library_kckcDataSet_rentTableAdapters.RentTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_rent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_rent)).BeginInit();
@@ -131,6 +131,7 @@
             // 
             // dataGridView_rent
             // 
+            this.dataGridView_rent.AllowUserToAddRows = false;
             this.dataGridView_rent.AutoGenerateColumns = false;
             this.dataGridView_rent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_rent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -143,9 +144,55 @@
             this.dataGridView_rent.DataSource = this.rentBindingSource;
             this.dataGridView_rent.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_rent.Name = "dataGridView_rent";
+            this.dataGridView_rent.ReadOnly = true;
             this.dataGridView_rent.Size = new System.Drawing.Size(739, 179);
             this.dataGridView_rent.TabIndex = 9;
             this.dataGridView_rent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_rent_CellContentClick);
+            // 
+            // idrentDataGridViewTextBoxColumn
+            // 
+            this.idrentDataGridViewTextBoxColumn.DataPropertyName = "id_rent";
+            this.idrentDataGridViewTextBoxColumn.HeaderText = "id_rent";
+            this.idrentDataGridViewTextBoxColumn.Name = "idrentDataGridViewTextBoxColumn";
+            this.idrentDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rentdateDataGridViewTextBoxColumn
+            // 
+            this.rentdateDataGridViewTextBoxColumn.DataPropertyName = "rent_date";
+            this.rentdateDataGridViewTextBoxColumn.HeaderText = "rent_date";
+            this.rentdateDataGridViewTextBoxColumn.Name = "rentdateDataGridViewTextBoxColumn";
+            this.rentdateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // completiondateDataGridViewTextBoxColumn
+            // 
+            this.completiondateDataGridViewTextBoxColumn.DataPropertyName = "completion_date";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.completiondateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.completiondateDataGridViewTextBoxColumn.HeaderText = "completion_date";
+            this.completiondateDataGridViewTextBoxColumn.Name = "completiondateDataGridViewTextBoxColumn";
+            this.completiondateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // feeDataGridViewTextBoxColumn
+            // 
+            this.feeDataGridViewTextBoxColumn.DataPropertyName = "fee";
+            this.feeDataGridViewTextBoxColumn.HeaderText = "fee";
+            this.feeDataGridViewTextBoxColumn.Name = "feeDataGridViewTextBoxColumn";
+            this.feeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idcustomerDataGridViewTextBoxColumn
+            // 
+            this.idcustomerDataGridViewTextBoxColumn.DataPropertyName = "id_customer";
+            this.idcustomerDataGridViewTextBoxColumn.HeaderText = "id_customer";
+            this.idcustomerDataGridViewTextBoxColumn.Name = "idcustomerDataGridViewTextBoxColumn";
+            this.idcustomerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idcopyDataGridViewTextBoxColumn
+            // 
+            this.idcopyDataGridViewTextBoxColumn.DataPropertyName = "id_copy";
+            this.idcopyDataGridViewTextBoxColumn.HeaderText = "id_copy";
+            this.idcopyDataGridViewTextBoxColumn.Name = "idcopyDataGridViewTextBoxColumn";
+            this.idcopyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // rentBindingSource
             // 
@@ -160,46 +207,6 @@
             // rentTableAdapter
             // 
             this.rentTableAdapter.ClearBeforeFill = true;
-            // 
-            // idrentDataGridViewTextBoxColumn
-            // 
-            this.idrentDataGridViewTextBoxColumn.DataPropertyName = "id_rent";
-            this.idrentDataGridViewTextBoxColumn.HeaderText = "id_rent";
-            this.idrentDataGridViewTextBoxColumn.Name = "idrentDataGridViewTextBoxColumn";
-            this.idrentDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // rentdateDataGridViewTextBoxColumn
-            // 
-            this.rentdateDataGridViewTextBoxColumn.DataPropertyName = "rent_date";
-            this.rentdateDataGridViewTextBoxColumn.HeaderText = "rent_date";
-            this.rentdateDataGridViewTextBoxColumn.Name = "rentdateDataGridViewTextBoxColumn";
-            // 
-            // completiondateDataGridViewTextBoxColumn
-            // 
-            this.completiondateDataGridViewTextBoxColumn.DataPropertyName = "completion_date";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.completiondateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.completiondateDataGridViewTextBoxColumn.HeaderText = "completion_date";
-            this.completiondateDataGridViewTextBoxColumn.Name = "completiondateDataGridViewTextBoxColumn";
-            // 
-            // feeDataGridViewTextBoxColumn
-            // 
-            this.feeDataGridViewTextBoxColumn.DataPropertyName = "fee";
-            this.feeDataGridViewTextBoxColumn.HeaderText = "fee";
-            this.feeDataGridViewTextBoxColumn.Name = "feeDataGridViewTextBoxColumn";
-            // 
-            // idcustomerDataGridViewTextBoxColumn
-            // 
-            this.idcustomerDataGridViewTextBoxColumn.DataPropertyName = "id_customer";
-            this.idcustomerDataGridViewTextBoxColumn.HeaderText = "id_customer";
-            this.idcustomerDataGridViewTextBoxColumn.Name = "idcustomerDataGridViewTextBoxColumn";
-            // 
-            // idcopyDataGridViewTextBoxColumn
-            // 
-            this.idcopyDataGridViewTextBoxColumn.DataPropertyName = "id_copy";
-            this.idcopyDataGridViewTextBoxColumn.HeaderText = "id_copy";
-            this.idcopyDataGridViewTextBoxColumn.Name = "idcopyDataGridViewTextBoxColumn";
             // 
             // RentForm
             // 
