@@ -69,6 +69,7 @@ namespace library
                         throw new Exception(ex.Message);
                     }
                 }
+                connection.Close();
             }
         }
 

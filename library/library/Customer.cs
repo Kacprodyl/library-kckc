@@ -49,6 +49,7 @@ namespace library
                         throw new Exception("Failed to add customer: " + ex.Message);
                     }
                 }
+                connection.Close();
             }
         }
 
