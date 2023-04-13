@@ -70,9 +70,12 @@ namespace library
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridView_rent.Rows[index];
                     int idRent = (int)selectedRow.Cells[0].Value;
+                    DateTime rentDate = (DateTime)selectedRow.Cells[1].Value;
                     int idCopy = (int)selectedRow.Cells[5].Value;
-                    Rent.DeleteRent(idRent, idCopy);
-                    Rent.DeleteCopyRent(idRent, idCopy);
+
+                    var rent = new Rent(idRent, idCopy, rentDate);
+                    rent.CompleteRent();
+                    rent.DeleteCopyRent();
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }

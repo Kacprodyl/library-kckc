@@ -12,11 +12,19 @@ namespace library
 {
     internal class Rent
     {
+        public int IdRent { get; set; }
         public int IdCopy { get; set;}
         public DateTime RentDate { get; set;}
         public DateTime CompletionDate { get; set;}
         public int IdCustomer { get; set; }
         public int Fee { get; set;}
+
+        public Rent(int idRent, int idCopy, DateTime rentDate)
+        {
+            IdRent = idRent;
+            IdCopy = idCopy;
+            RentDate = rentDate;
+        }
 
         public Rent(int idCopy, int idCustomer)
         {
@@ -92,27 +100,46 @@ namespace library
             }
         }
 
-        public static void DeleteRent(int idRent, int idCopy)
+        public void CompleteRent()
         {
+            int fee = 0;
+
+            DateTime completionDate = DateTime.Today;
+            TimeSpan span = completionDate.Subtract(RentDate);
+            int days = (int)span.TotalDays;
+            string sqlFormatredDate = completionDate.ToString("yyyy-MM-dd");
+
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
             {
                 connection.Open();
+                if (days > 89)
+                {
+                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = {sqlFormatredDate}, fee = {100} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
 
-                var adapter = new SqlDataAdapter("DELETE FROM Rent where id_rent = @id_rent AND id_copy = @id_copy", connection);
-                adapter.SelectCommand.Parameters.AddWithValue("@id_rent", idRent);
-                adapter.SelectCommand.Parameters.AddWithValue("@id_copy", idCopy);
+                    var table = new DataTable();
+                    adapter.Fill(table);
+                    adapter.Update(table);
+                }
+                else
+                {
+                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = {sqlFormatredDate}, fee = {0} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
 
-                var table = new DataTable();
-                adapter.Fill(table);
-                adapter.Update(table);
+                    var table = new DataTable();
+                    adapter.Fill(table);
+                    adapter.Update(table);
+                }
 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { connection.Close(); }
         }
 
-        public static void DeleteCopyRent(int idRent, int idCopy)
+        public void DeleteCopyRent()
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
@@ -120,8 +147,8 @@ namespace library
                 connection.Open();
 
                 var adapter = new SqlDataAdapter("DELETE FROM CopyRent where id_rent = @id_rent AND id_copy = @id_copy", connection);
-                adapter.SelectCommand.Parameters.AddWithValue("@id_rent", idRent);
-                adapter.SelectCommand.Parameters.AddWithValue("@id_copy", idCopy);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
 
                 var table = new DataTable();
                 adapter.Fill(table);
