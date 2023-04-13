@@ -30,6 +30,15 @@ namespace library
             dataGridViewBooks.Columns.Add(colCopy);
             DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
 
+            var colRent = new DataGridViewButtonColumn
+            {
+                UseColumnTextForButtonValue = true,
+                Text = "Rent",
+                Name = "Rent",
+                FillWeight = 40
+            };
+            dataGridViewBooks.Columns.Add(colRent);
+
             // Create a new data adapter and dataset
             var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);
             var dataSet = new DataSet();
@@ -79,11 +88,20 @@ namespace library
                 {
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
-                    int id_book = (int)selectedRow.Cells[1].Value;
-                    string title = (string)selectedRow.Cells[2].Value;
-                    int quantity = (int)selectedRow.Cells[6].Value;
+                    int id_book = (int)selectedRow.Cells[2].Value;
+                    string title = (string)selectedRow.Cells[3].Value;
+                    int quantity = (int)selectedRow.Cells[7].Value;
                     var qunatity_win = new Quantity(id_book, quantity, title);
                     qunatity_win.ShowDialog();
+                }
+                else if (dataGridViewBooks.Columns[e.ColumnIndex].Name == "Rent")
+                {
+                    int index = e.RowIndex;
+                    DataGridViewRow selectedRow = dataGridViewBooks.Rows[index];
+                    int id_book = (int)selectedRow.Cells[2].Value;
+
+                    var rentWindow = new RentForm(id_book);
+                    rentWindow.ShowDialog();
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
