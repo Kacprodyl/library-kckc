@@ -21,6 +21,14 @@ namespace library
 
         public Rent(int idRent, int idCopy, DateTime rentDate)
         {
+            /*
+            Constructor for Rent object
+            Parameters:
+            idRent (int): ID of the rent
+            idCopy (int): ID of the copy being rented
+            rentDate (DateTime): Date the copy is rented
+            */
+
             IdRent = idRent;
             IdCopy = idCopy;
             RentDate = rentDate;
@@ -28,6 +36,13 @@ namespace library
 
         public Rent(int idCopy, int idCustomer)
         {
+            /*
+            Constructor for Rent object
+            Parameters:
+            idCopy (int): ID of the copy being rented
+            idCustomer (int): ID of the customer renting the copy
+            */
+
             IdCopy = idCopy;
             IdCustomer = idCustomer;
             
@@ -35,6 +50,10 @@ namespace library
 
         public void AddRent()
         {
+            /*
+            Adds a new rent record to the database
+            */
+
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
             {
@@ -58,6 +77,10 @@ namespace library
 
         public void UpdateCopyRent()
         {
+            /*
+            Updates the CopyRent table with the current rent record
+            */
+
             using (var connection = new SqlConnection(DbCon.ConnectionString))
             {
                 connection.Open();
@@ -83,6 +106,11 @@ namespace library
 
         public int GetLastRentId()
         {
+            /*
+          Gets the ID of the last added rent record from the Rent table
+          Returns:
+              int: ID of the last added rent record
+          */
             try
             {
 
@@ -102,6 +130,11 @@ namespace library
 
         public void CompleteRent()
         {
+            /*
+            This method updates the "Rent" table in the database to mark a rental as completed. It sets the completion date
+            and fee for the rental based on how many days it was rented.
+            If the rental was rented for more than 89 days, a fee of 100 is charged; otherwise, the fee is 0.
+             */
             DateTime completionDate = DateTime.Today;
             TimeSpan span = completionDate.Subtract(RentDate);
             int days = (int)span.TotalDays;
@@ -138,6 +171,10 @@ namespace library
 
         public void DeleteCopyRent()
         {
+            /*
+             This method deletes a record from the "CopyRent" table in the database that associates a copy with a rental.
+             It takes the rental ID and copy ID as parameters.
+             */
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
             {
@@ -158,6 +195,10 @@ namespace library
 
         public void UpdateCopyAfterComplition()
         {
+            /*
+             This method updates the "Copy" table in the database to increase the quantity of a copy by 1 after it has been returned from a rental.
+             It takes the copy ID as a parameter.
+             */
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
             {
