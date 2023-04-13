@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace library
 {
@@ -43,7 +45,12 @@ namespace library
                 var copy = new Copy(IdBook);
                 int copyId = copy.GetCopyId();
 
-                var customer = new Customer(textBox_first_name.Text, textBox_surrname.Text, textBox_phone_number.Text, textBox_email.Text);
+                string first_name = textBox_first_name.Text;
+                string surname = textBox_surrname.Text;
+                string phone_number = textBox_phone_number.Text;
+                string email = textBox_email.Text;
+
+                var customer = new Customer(first_name, surname, phone_number, email);
                 customer.AddCustomer();
                 int customerId = customer.GetCustomerId();
 
@@ -53,7 +60,17 @@ namespace library
                 rent.UpdateCopyRent();
                 copy.UpdateCopyAfterRent(copyId);
 
-                MessageBox.Show($"Rent added for user: {textBox_first_name.Text} {textBox_surrname.Text}");
+                MailSender mailSender = new MailSender();
+                if(!MailSender.IsValidEmail(email))
+                {
+                    MessageBox.Show("Invalid email!");
+                }
+                else
+                {
+                    mailSender.Send(email, first_name, surname, phone_number);
+                    MessageBox.Show($"Rent added for user: {textBox_first_name.Text} {textBox_surrname.Text}");
+                }
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
