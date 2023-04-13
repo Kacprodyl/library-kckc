@@ -21,3 +21,7 @@ To borrow a particular book, click the "Rent" button next to the appropriate row
 
 # Rent Back
 To return a borrowed book in the "Rent" window, simply click the "Rent Back" button in the appropriate row. The cost of the fee is automatically calculated.
+
+# Business rules
+- After 89 days without rent back, customer will be fined 100 PLN
+- After rent, an email will be sent to the customer's email address with rent information
