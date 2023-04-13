@@ -1,4 +1,5 @@
-﻿using System;
+﻿using library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,8 +21,10 @@ namespace library
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void button_rent_Click(object sender, EventArgs e)
         {
+
             try
             {
                 var copy = new Copy(IdBook);
