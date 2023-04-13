@@ -155,5 +155,19 @@ namespace library
             finally {connection.Close();}
 
         }
+
+        public void UpdateCopyAfterComplition()
+        {
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+                var command = new SqlCommand("UPDATE Copy SET quantity = quantity + 1 WHERE id_copy = @id_copy;", connection);
+                command.Parameters.AddWithValue("@id_copy", IdCopy);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { connection.Close(); }
+        }
     }
 }

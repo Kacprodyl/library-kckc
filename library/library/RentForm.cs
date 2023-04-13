@@ -76,6 +76,7 @@ namespace library
                     var rent = new Rent(idRent, idCopy, rentDate);
                     rent.CompleteRent();
                     rent.DeleteCopyRent();
+                    rent.UpdateCopyAfterComplition();
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
