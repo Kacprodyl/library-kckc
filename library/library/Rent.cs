@@ -102,8 +102,6 @@ namespace library
 
         public void CompleteRent()
         {
-            int fee = 0;
-
             DateTime completionDate = DateTime.Today;
             TimeSpan span = completionDate.Subtract(RentDate);
             int days = (int)span.TotalDays;
