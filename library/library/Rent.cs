@@ -12,11 +12,19 @@ namespace library
 {
     internal class Rent
     {
+        public int IdRent { get; set; }
         public int IdCopy { get; set;}
         public DateTime RentDate { get; set;}
         public DateTime CompletionDate { get; set;}
         public int IdCustomer { get; set; }
         public int Fee { get; set;}
+
+        public Rent(int idRent, int idCopy, DateTime rentDate)
+        {
+            IdRent = idRent;
+            IdCopy = idCopy;
+            RentDate = rentDate;
+        }
 
         public Rent(int idCopy, int idCustomer)
         {
@@ -38,7 +46,7 @@ namespace library
                 var newRow = table.NewRow();
                 newRow["rent_date"] = DateTime.Today;
                 newRow["completion_date"] = DateTime.Today;
-                newRow["fee"] = 5;
+                newRow["fee"] = 0;
                 newRow["id_customer"] = IdCustomer;
                 newRow["id_copy"] = IdCopy;
                 table.Rows.Add(newRow);
@@ -66,10 +74,10 @@ namespace library
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw new Exception(ex.Message);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    finally { connection.Close(); }
                 }
-                connection.Close();
             }
         }
 
@@ -90,6 +98,76 @@ namespace library
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1; // Return an invalid value if no customer id was found or an error occurred
             }
+        }
+
+        public void CompleteRent()
+        {
+            DateTime completionDate = DateTime.Today;
+            TimeSpan span = completionDate.Subtract(RentDate);
+            int days = (int)span.TotalDays;
+
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+                if (days > 89)
+                {
+                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = '{completionDate.ToString("yyyy-MM-dd")}', fee = {100} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
+
+                    var table = new DataTable();
+                    adapter.Fill(table);
+                    adapter.Update(table);
+                }
+                else
+                {
+                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = '{completionDate.ToString("yyyy-MM-dd")}', fee = {0} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
+                    adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
+
+                    var table = new DataTable();
+                    adapter.Fill(table);
+                    adapter.Update(table);
+                }
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { connection.Close(); }
+        }
+
+        public void DeleteCopyRent()
+        {
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+
+                var adapter = new SqlDataAdapter("DELETE FROM CopyRent where id_rent = @id_rent AND id_copy = @id_copy", connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
+                adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
+
+                var table = new DataTable();
+                adapter.Fill(table);
+                adapter.Update(table);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally {connection.Close();}
+
+        }
+
+        public void UpdateCopyAfterComplition()
+        {
+            var connection = new SqlConnection(DbCon.ConnectionString);
+            try
+            {
+                connection.Open();
+                var command = new SqlCommand("UPDATE Copy SET quantity = quantity + 1 WHERE id_copy = @id_copy;", connection);
+                command.Parameters.AddWithValue("@id_copy", IdCopy);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally { connection.Close(); }
         }
     }
 }

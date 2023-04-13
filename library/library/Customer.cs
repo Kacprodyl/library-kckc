@@ -46,10 +46,10 @@ namespace library
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw new Exception("Failed to add customer: " + ex.Message);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    finally { connection.Close();}
                 }
-                connection.Close();
             }
         }
 

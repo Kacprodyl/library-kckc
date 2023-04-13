@@ -82,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_library_kckcDataSet_genre.xsd</DependentUpon>
     </Compile>
+    <Compile Include="_library_kckcDataSet_rent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_library_kckcDataSet_rent.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Quantity.resx">
       <DependentUpon>Quantity.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +135,17 @@
     </None>
     <None Include="_library_kckcDataSet_genre.xss">
       <DependentUpon>_library_kckcDataSet_genre.xsd</DependentUpon>
+    </None>
+    <None Include="_library_kckcDataSet_rent.xsc">
+      <DependentUpon>_library_kckcDataSet_rent.xsd</DependentUpon>
+    </None>
+    <None Include="_library_kckcDataSet_rent.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_library_kckcDataSet_rent.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_library_kckcDataSet_rent.xss">
+      <DependentUpon>_library_kckcDataSet_rent.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
