@@ -105,7 +105,6 @@ namespace library
             DateTime completionDate = DateTime.Today;
             TimeSpan span = completionDate.Subtract(RentDate);
             int days = (int)span.TotalDays;
-            string sqlFormatredDate = completionDate.ToString("yyyy-MM-dd");
 
             var connection = new SqlConnection(DbCon.ConnectionString);
             try
@@ -113,7 +112,7 @@ namespace library
                 connection.Open();
                 if (days > 89)
                 {
-                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = {sqlFormatredDate}, fee = {100} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
+                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = '{completionDate.ToString("yyyy-MM-dd")}', fee = {100} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
                     adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
                     adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
 
@@ -123,7 +122,7 @@ namespace library
                 }
                 else
                 {
-                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = {sqlFormatredDate}, fee = {0} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
+                    var adapter = new SqlDataAdapter($"UPDATE Rent SET completion_date = '{completionDate.ToString("yyyy-MM-dd")}', fee = {0} WHERE id_rent = @id_rent AND id_copy = @id_copy ", connection);
                     adapter.SelectCommand.Parameters.AddWithValue("@id_rent", IdRent);
                     adapter.SelectCommand.Parameters.AddWithValue("@id_copy", IdCopy);
 
