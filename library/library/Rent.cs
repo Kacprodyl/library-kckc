@@ -16,7 +16,6 @@ namespace library
         public int IdCopy { get; set;}
         public DateTime RentDate { get; set;}
         public int IdCustomer { get; set; }
-        public int Fee { get; set;}
 
         public Rent(int idRent, int idCopy, DateTime rentDate)
         {

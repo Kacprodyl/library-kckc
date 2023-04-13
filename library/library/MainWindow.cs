@@ -28,7 +28,6 @@ namespace library
                 FillWeight = 60
             };
             dataGridViewBooks.Columns.Add(colCopy);
-            DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
 
             var colRent = new DataGridViewButtonColumn
             {
@@ -38,6 +37,7 @@ namespace library
                 FillWeight = 40
             };
             dataGridViewBooks.Columns.Add(colRent);
+            DGV.RefreshDGV(dataGridViewBooks, "EXEC GetBookInfo;");
 
             // Create a new data adapter and dataset
             var dataAdapter = new SqlDataAdapter("SELECT * FROM Genre", DbCon.ConnectionString);

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MailSender.cs" />
     <Compile Include="Quantity.cs">
       <SubType>Form</SubType>
     </Compile>
