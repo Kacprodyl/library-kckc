@@ -126,9 +126,11 @@
             // 
             // dataGridView_rent
             // 
+            this.dataGridView_rent.AllowUserToAddRows = false;
             this.dataGridView_rent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_rent.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_rent.Name = "dataGridView_rent";
+            this.dataGridView_rent.ReadOnly = true;
             this.dataGridView_rent.Size = new System.Drawing.Size(739, 179);
             this.dataGridView_rent.TabIndex = 9;
             this.dataGridView_rent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_rent_CellContentClick);
