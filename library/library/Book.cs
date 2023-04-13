@@ -19,7 +19,15 @@ namespace library
         public int Quantity { get; set; }
         public DateTime ReleaseDate { get; set; }
 
-
+        /// <summary>
+        /// Creates a new instance of the Book class with the specified parameters.
+        /// </summary>
+        /// <param name="name">The name of the book.</param>
+        /// <param name="genreId">The genre ID of the book.</param>
+        /// <param name="publisher">The publisher of the book.</param>
+        /// <param name="author">The author of the book.</param>
+        /// <param name="quantity">The quantity of copies of the book.</param>
+        /// <param name="releaseDate">The release date of the book.</param>
         public Book(string name, int genreId, string publisher, string author, int quantity, DateTime releaseDate)
         {
             Name = name;
@@ -29,6 +37,10 @@ namespace library
             Quantity = quantity;
             ReleaseDate = releaseDate;
         }
+
+        /// <summary>
+        /// Adds a book to the database.
+        /// </summary>
         public void AddBook()
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
