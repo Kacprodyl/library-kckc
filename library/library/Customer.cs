@@ -13,6 +13,14 @@ namespace library
 {
     internal class Customer
     {
+        /// <summary>
+        /// Initializes a new instance of the Customer class.
+        /// </summary>
+        /// <param name="firstName">The first name of the customer.</param>
+        /// <param name="surrname">The surname of the customer.</param>
+        /// <param name="phoneNumber">The phone number of the customer.</param>
+        /// <param name="email">The email address of the customer.</param>
+      
         public string FirstName { get; set; }
         public string Surrname { get; set; }
         public string PhoneNumber { get; set; }
