@@ -10,21 +10,34 @@ using System.Windows.Forms;
 namespace library
 {
     internal class Copy
+        
     {
         public int Quantity { get; set; }
         public int IdBook { get; set; }
 
+        /// <summary>
+        /// Constructor for creating a Copy object with a given quantity and book id.
+        /// </summary>
+        /// <param name="quantity">The quantity of this copy.</param>
+        /// <param name="idBook">The id of the book associated with this copy.</param>
         public Copy(int quantity, int idBook)
         {
             Quantity = quantity;
             IdBook = idBook;
         }
 
+        /// <summary>
+        /// Constructor for creating a Copy object with a given book id.
+        /// </summary>
+        /// <param name="idBook">The id of the book associated with this copy.</param>
         public Copy(int idBook)
         {
             IdBook = idBook;
         }
 
+        /// <summary>
+        /// Updates the quantity of the copy in the database.
+        /// </summary>
         public void QuantityUpdate()
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
@@ -40,6 +53,10 @@ namespace library
             finally { connection.Close(); }
         }
 
+        /// <summary>
+        /// Retrieves the id of a copy associated with this book.
+        /// </summary>
+        /// <returns>The id of a copy associated with this book, or -1 if not found or an error occurred.</returns>
         public int GetCopyId()
         {
             try
@@ -57,6 +74,10 @@ namespace library
             }
         }
 
+        /// <summary>
+        /// Updates the quantity of a copy after it has been rented.
+        /// </summary>
+        /// <param name="copyId">The id of the copy to update.</param>
         public void UpdateCopyAfterRent(int copyId)
         {
             var connection = new SqlConnection(DbCon.ConnectionString);
