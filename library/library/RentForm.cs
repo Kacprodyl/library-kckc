@@ -61,7 +61,7 @@ namespace library
         private void RentForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the '_library_kckcDataSet_rent.Rent' table. You can move, or remove it, as needed.
-            this.rentTableAdapter.Fill(this._library_kckcDataSet_rent.Rent);
+            DGV.RefreshDGV(dataGridView_rent, "SELECT r.id_rent, r.rent_date, r.completion_date, r.fee, c.surname, b.name, r.id_copy FROM Rent r JOIN Customer c ON r.id_customer = c.id_customer JOIN Copy cp ON r.id_copy = cp.id_copy JOIN Book b ON cp.id_book = b.id_book;");
 
         }
 
@@ -78,9 +78,9 @@ namespace library
                 {
                     int index = e.RowIndex;
                     DataGridViewRow selectedRow = dataGridView_rent.Rows[index];
-                    int idRent = (int)selectedRow.Cells[0].Value;
-                    DateTime rentDate = (DateTime)selectedRow.Cells[1].Value;
-                    int idCopy = (int)selectedRow.Cells[5].Value;
+                    int idRent = (int)selectedRow.Cells[1].Value;
+                    DateTime rentDate = (DateTime)selectedRow.Cells[2].Value;
+                    int idCopy = (int)selectedRow.Cells[7].Value;
 
                     var rent = new Rent(idRent, idCopy, rentDate);
                     rent.CompleteRent();
@@ -89,7 +89,8 @@ namespace library
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            finally { DGV.RefreshDGV(dataGridView_rent, "SELECT * FROM Rent;"); }
+            finally { DGV.RefreshDGV(dataGridView_rent, "SELECT r.id_rent, r.rent_date, r.completion_date, r.fee, c.surname, b.name, r.id_copy FROM Rent r JOIN Customer c ON r.id_customer = c.id_customer JOIN Copy cp ON r.id_copy = cp.id_copy JOIN Book b ON cp.id_book = b.id_book;"); }
         }
+
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,15 +42,11 @@
             this.rentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._library_kckcDataSet_rent = new library._library_kckcDataSet_rent();
             this.rentTableAdapter = new library._library_kckcDataSet_rentTableAdapters.RentTableAdapter();
-            this.idrentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rentdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.completiondateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.feeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idcustomerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idcopyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._library_kckcDataSet = new library._library_kckcDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_rent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_rent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -131,16 +126,7 @@
             // 
             // dataGridView_rent
             // 
-            this.dataGridView_rent.AutoGenerateColumns = false;
             this.dataGridView_rent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_rent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idrentDataGridViewTextBoxColumn,
-            this.rentdateDataGridViewTextBoxColumn,
-            this.completiondateDataGridViewTextBoxColumn,
-            this.feeDataGridViewTextBoxColumn,
-            this.idcustomerDataGridViewTextBoxColumn,
-            this.idcopyDataGridViewTextBoxColumn});
-            this.dataGridView_rent.DataSource = this.rentBindingSource;
             this.dataGridView_rent.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_rent.Name = "dataGridView_rent";
             this.dataGridView_rent.Size = new System.Drawing.Size(739, 179);
@@ -161,45 +147,10 @@
             // 
             this.rentTableAdapter.ClearBeforeFill = true;
             // 
-            // idrentDataGridViewTextBoxColumn
+            // _library_kckcDataSet
             // 
-            this.idrentDataGridViewTextBoxColumn.DataPropertyName = "id_rent";
-            this.idrentDataGridViewTextBoxColumn.HeaderText = "id_rent";
-            this.idrentDataGridViewTextBoxColumn.Name = "idrentDataGridViewTextBoxColumn";
-            this.idrentDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // rentdateDataGridViewTextBoxColumn
-            // 
-            this.rentdateDataGridViewTextBoxColumn.DataPropertyName = "rent_date";
-            this.rentdateDataGridViewTextBoxColumn.HeaderText = "rent_date";
-            this.rentdateDataGridViewTextBoxColumn.Name = "rentdateDataGridViewTextBoxColumn";
-            // 
-            // completiondateDataGridViewTextBoxColumn
-            // 
-            this.completiondateDataGridViewTextBoxColumn.DataPropertyName = "completion_date";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.completiondateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.completiondateDataGridViewTextBoxColumn.HeaderText = "completion_date";
-            this.completiondateDataGridViewTextBoxColumn.Name = "completiondateDataGridViewTextBoxColumn";
-            // 
-            // feeDataGridViewTextBoxColumn
-            // 
-            this.feeDataGridViewTextBoxColumn.DataPropertyName = "fee";
-            this.feeDataGridViewTextBoxColumn.HeaderText = "fee";
-            this.feeDataGridViewTextBoxColumn.Name = "feeDataGridViewTextBoxColumn";
-            // 
-            // idcustomerDataGridViewTextBoxColumn
-            // 
-            this.idcustomerDataGridViewTextBoxColumn.DataPropertyName = "id_customer";
-            this.idcustomerDataGridViewTextBoxColumn.HeaderText = "id_customer";
-            this.idcustomerDataGridViewTextBoxColumn.Name = "idcustomerDataGridViewTextBoxColumn";
-            // 
-            // idcopyDataGridViewTextBoxColumn
-            // 
-            this.idcopyDataGridViewTextBoxColumn.DataPropertyName = "id_copy";
-            this.idcopyDataGridViewTextBoxColumn.HeaderText = "id_copy";
-            this.idcopyDataGridViewTextBoxColumn.Name = "idcopyDataGridViewTextBoxColumn";
+            this._library_kckcDataSet.DataSetName = "_library_kckcDataSet";
+            this._library_kckcDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // RentForm
             // 
@@ -222,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_rent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet_rent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._library_kckcDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,11 +194,6 @@
         private _library_kckcDataSet_rent _library_kckcDataSet_rent;
         private System.Windows.Forms.BindingSource rentBindingSource;
         private _library_kckcDataSet_rentTableAdapters.RentTableAdapter rentTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idrentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rentdateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn completiondateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn feeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcustomerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcopyDataGridViewTextBoxColumn;
+        private _library_kckcDataSet _library_kckcDataSet;
     }
 }
